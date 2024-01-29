@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astrome</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://w1.pngwing.com/pngs/543/697/png-transparent-rainbow-color-star-coloring-book-drawing-favicon-colored-pencil-triangle-symmetry-art-paper-line.png"
+    />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+      .colors {
+        background-color: #00092a;
+        display: flex;
+        flex-direction: row;
+        width: 50vw;
+        height: 50vh;
+        padding: 0.8rem;
+        margin-bottom: 3rem;
+      }
+      .colors div {
+        display: flex;
+        width: calc(100% / 5);
+        height: 100%;
+        bottom: 0 !important;
+        margin-top: auto;
+        transition: all 0.5s;
+      }
+      .colors div:nth-child(1) {
+        background-color: #6f4bbc;
+      }
+      .colors div:nth-child(2) {
+        background-color: #d84893;
+      }
+      .colors div:nth-child(3) {
+        background-color: #fc5c84;
+      }
+      .colors div:nth-child(4) {
+        background-color: #fc9055;
+      }
+      .colors div:nth-child(5) {
+        background-color: #f2cc52;
+      }
+      .btn {
+        width: 50vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+      }
+      button {
+        width: 7rem;
+        height: 2rem;
+        color: white;
+        border: none;
+      }
+      button:hover {
+        cursor: pointer;
+      }
+      button:active {
+        position: relative;
+        top: 1px;
+      }
+      .btn button:nth-child(1) {
+        background-color: #008055;
+      }
+      .btn button:nth-child(2) {
+        background-color: #7e5abc;
+      }
+      .btn button:nth-child(3) {
+        background-color: #ea0915;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="colors">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="btn">
+        <button id="strt">Start</button>
+        <button id="rst">Reset</button>
+        <button id="stp">Stop</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    const clrs = document.querySelectorAll(".colors > div");
+    const strt = document.getElementById("strt");
+    const rst = document.getElementById("rst");
+    const stp = document.getElementById("stp");
+    let intervalID;
+
+    function Start() {
+      intervalID = setInterval(function () {
+        clrs.forEach((clr) => changeStart(clr));
+      }, 1200);
+    }
+
+    function changeStart(clr) {
+      const ht = Math.random() * 100;
+      clr.style.setProperty("height", `${ht}%`);
+    }
+
+    function Reset() {
+      clearInterval(intervalID);
+      clrs.forEach((clr) => clr.style.setProperty("height", "100%"));
+    }
+
+    function Stop() {
+      clearInterval(intervalID);
+    }
+
+    strt.addEventListener("click", Start);
+    rst.addEventListener("click", Reset);
+    stp.addEventListener("click", Stop);
+  </script>
+</html>
